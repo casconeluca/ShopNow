@@ -53,3 +53,12 @@
 .footer {
   background-color: black !important;
 }
+
+.link-personalizzato {
+  text-decoration: none;
+  color: inherit;
+}
+
+.link-personalizzato:hover {
+  text-decoration: underline;
+}
