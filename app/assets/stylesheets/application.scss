@@ -15,6 +15,41 @@
  */
 @import "bootstrap";
 
+
 .navbar{
-  background-color: #FDF6EA !important;
+  background-color: black !important;
+}
+
+.nav-link{
+  color: white !important;
+}
+
+#logo{
+  float: left;
+  font-size: 1.7em;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+  font-weight: bold;
+}
+
+#home-container{
+  margin-top: 25px;
+}
+
+#jumbotron{
+  background-image: asset_url('immagine_home.jpg');
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 680px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 10);
+}
+
+.py-5 {
+  padding-top: 12rem !important;
+}
+
+.footer {
+  background-color: black !important;
 }
