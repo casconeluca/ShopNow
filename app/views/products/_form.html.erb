@@ -1,13 +1,6 @@
 <div class="container">
   <%= form_with(model: product) do |form| %>
-    <% if product.errors.any? %>
-        <h2><%= pluralize(product.errors.count, "error") %> prohibited this product from being saved:</h2>
-        <ul>
-          <% product.errors.each do |error| %>
-            <li><%= error.full_message %></li>
-          <% end %>
-        </ul>
-    <% end %>
+    <%= render "shared/errors", product: product %>
 
     <div class="row spazio-sopra justify-content-center shadow p-3 mb-3 bg-warning rounded pt-5 pb-5">
       <div class="col-10">
