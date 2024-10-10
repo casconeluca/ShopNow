@@ -15,8 +15,15 @@
  */
 @import "bootstrap";
 
+html{
+  height: 100%;
+}
 body{
   background-color: #999971;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 
@@ -56,7 +63,9 @@ body{
 }
 
 .footer {
-  background-color: black !important;
+  background-color: black;
+  margin-top: auto;
+  padding: 1rem 0;
 }
 
 .link-personalizzato {
@@ -75,4 +84,9 @@ body{
 
 .spazio-sopra {
   margin-top: 120px;
+}
+
+.footer .container {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
 }
