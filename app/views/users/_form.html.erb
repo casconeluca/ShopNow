@@ -1,33 +1,36 @@
 <div class="container">
-  <%= form_with(model: product) do |form| %>
-    <%= render "shared/errors", obj: product %>
+  <%= form_with(model: user) do |form| %>
+    <%= render "shared/errors", obj: user %>
 
     <div class="row spazio-sopra justify-content-center shadow p-3 mb-3 bg-warning rounded">
       <div class="col-10">
+
+
         <div class="form-group row">
-          <%= form.label :name, class: "col-sm-2 col-form-label" %>
+          <%= form.label :username, class: "col-sm-2 col-form-label" %>
           <div class="col-sm-10">
-            <%= form.text_field :name, class: "form-control shadow rounded", placeholder: "Name of product"  %>
+            <%= form.text_field :username, class: "form-control shadow rounded", placeholder: "Enter a username"  %>
           </div>
         </div>
 
         <div class="form-group row">
-          <%= form.label :description, class: "col-sm-2 col-form-label" %>
+          <%= form.label :email, class: "col-sm-2 col-form-label" %>
           <div class="col-sm-10">
-            <%= form.text_area :description, rows:10, class: "form-control shadow rounded", placeholder: "Description of product"  %>
+            <%= form.email_field :email, class: "form-control shadow rounded", placeholder: "Enter your email"  %>
           </div>
         </div>
 
         <div class="form-group row">
-          <%= form.label :price, class: "col-sm-2 col-form-label" %>
+          <%= form.label :password, class: "col-sm-2 col-form-label" %>
           <div class="col-sm-10">
-            <%= form.text_field :price, class: "form-control shadow rounded", placeholder: "Price of product"  %>
+            <%= form.password_field :password, class: "form-control shadow rounded", placeholder: "Choose a password"  %>
           </div>
         </div>
+
 
         <div class="row justify-content-center">
           <div class="col-auto">
-            <%= form.submit class: "btn btn-outline-light btn-lg" %>
+            <%= form.submit "Sign up", class: "btn btn-outline-light btn-lg" %>
           </div>
         </div>
 
