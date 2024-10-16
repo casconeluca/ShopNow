@@ -4,7 +4,6 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @products = @user.products
   end
-
   def index
     @users = User.all
   end
@@ -31,7 +30,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     respond_to do |format|
       if @user.update(user_params)
-        format.html { redirect_to products_path, notice: "The account was successfully updated." }
+        format.html { redirect_to @user, notice: "The account was successfully updated." }
       else
         format.html { render :edit, status: :unprocessable_content }
       end
