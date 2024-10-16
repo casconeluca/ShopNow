@@ -1,6 +1,13 @@
 <% content_for :title, "Products" %>
 
-
 <h1 class="text-center mt-4">Listing all products</h1>
 
+<div class="apple_pagination">
+  <%= will_paginate @products, :container => false %>
+</div>
+
 <%= render "product" %>
+
+<div class="apple_pagination mb-4">
+  <%= will_paginate @products, :container => false %>
+</div>
