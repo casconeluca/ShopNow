@@ -59,3 +59,5 @@ end
 gem "bootstrap"
 gem "sassc-rails"
 gem "will_paginate", "~> 4.0"
+
+gem "byebug", "~> 11.1", :groups => [:development, :test]
