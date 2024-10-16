@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
   before_action :set_user, only: %i[ show edit update ]
+  before_action :require_user, only: %i[ edit update ]
+  before_action :require_same_user, only: %i[ edit update ]
   def show
     @products = @user.products.paginate(page: params[:page], per_page: 3)
   end
@@ -45,6 +47,12 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
+  def require_same_user
+    if current_user != @user
+      flash[:alert] = "You can only edit your own account"
+      redirect_to @user
+    end
+  end
 
 
 end
