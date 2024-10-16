@@ -13,8 +13,10 @@
             <p class="card-text"><%= truncate(product.description, length: 50) %></p>
             <p class="card-text"><%= "#{product.price} €" %></p>
             <%= link_to "View", product, class: "btn btn-outline-success" %>
-            <%= link_to "Edit", edit_product_path(product), class: "btn btn-outline-info" %>
-            <%= link_to "Delete", product, class: "btn btn-outline-danger", data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+            <% if logged_in? && product.user == current_user %>
+              <%= link_to "Edit", edit_product_path(product), class: "btn btn-outline-info" %>
+              <%= link_to "Delete", product, class: "btn btn-outline-danger", data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+            <% end %>
           </div>
           <div class="card-footer text-body-secondar">
             <small>Created <%= time_ago_in_words(product.created_at) %> ago, Edited <%= time_ago_in_words(product.updated_at) %> ago</small>

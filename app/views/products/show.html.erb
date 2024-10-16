@@ -13,8 +13,10 @@
           <div class="card-body">
             <div class="card-text text-start"><%= simple_format(@product.description) %></div>
             <p class="card-text text-start"><%= "#{@product.price} €" %></p>
-            <%= link_to "Edit", edit_product_path(@product), class: "btn btn-outline-info" %>
-            <%= link_to "Delete", @product, class: "btn btn-outline-danger", data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+            <% if logged_in? && @product.user == current_user %>
+              <%= link_to "Edit", edit_product_path(@product), class: "btn btn-outline-info" %>
+              <%= link_to "Delete", @product, class: "btn btn-outline-danger", data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+            <% end %>
           </div>
           <div class="card-footer text-body-secondar">
             <small>Created <%= time_ago_in_words(@product.created_at) %> ago, Edited <%= time_ago_in_words(@product.updated_at) %> ago</small>
