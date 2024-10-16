@@ -1,5 +1,7 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: %i[ show edit update destroy ]
+  before_action :require_user, except:  %i[ show index ]
+  before_action :require_same_user, only: %i[ edit update destroy ]
 
   # GET /products or /products.json
   def index
@@ -63,4 +65,13 @@ class ProductsController < ApplicationController
     def product_params
       params.require(:product).permit(:name, :description, :price)
     end
+
+    def require_same_user
+      if current_user != @product.user
+        flash[:alert] = "You can only edit or delete your own products"
+        redirect_to @product
+      end
+    end
+
+
 end
