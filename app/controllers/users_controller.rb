@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: %i[ show edit update ]
+  before_action :set_user, only: %i[ show edit update destroy ]
   before_action :require_user, only: %i[ edit update ]
-  before_action :require_same_user, only: %i[ edit update ]
+  before_action :require_same_user, only: %i[ edit update destroy ]
   def show
     @products = @user.products.paginate(page: params[:page], per_page: 3)
   end
@@ -35,6 +35,13 @@ class UsersController < ApplicationController
         format.html { render :edit, status: :unprocessable_content }
       end
     end
+  end
+
+  def destroy
+    @user.destroy
+    session[:user_id] = nil
+    flash[:notice] = "Account and all associated products successfully deleted."
+    redirect_to products_path
   end
 
   private
