@@ -18,6 +18,7 @@
 html{
   height: 100%;
 }
+
 body{
   background-color: #999971;
   height: 100%;
@@ -25,8 +26,6 @@ body{
   flex-direction: column;
   min-height: 100vh;
 }
-
-
 
 .navbar{
   background-color: black !important;
@@ -76,7 +75,6 @@ body{
 .link-personalizzato:hover {
   text-decoration: underline;
 }
-
 
 .form-group {
   margin-bottom: 1rem;

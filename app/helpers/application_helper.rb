@@ -1,4 +1,3 @@
-# app/helpers/application_helper.rb
 module ApplicationHelper
   def gravatar_for(user, options = { size: 80 })
     email_hash = Digest::MD5.hexdigest(user.email.downcase)
