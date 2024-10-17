@@ -2,76 +2,51 @@ class ProductsController < ApplicationController
   before_action :set_product, only: %i[ show edit update destroy ]
   before_action :require_user, except:  %i[ show index ]
   before_action :require_same_user, only: %i[ edit update destroy ]
-
-  # GET /products or /products.json
+  def show
+  end
   def index
     @products = Product.paginate(page: params[:page], per_page: 3)
   end
-
-  # GET /products/1 or /products/1.json
-  def show
-  end
-
-  # GET /products/new
   def new
     @product = Product.new
   end
-
-  # GET /products/1/edit
   def edit
   end
-
-  # POST /products or /products.json
   def create
     @product = Product.new(product_params)
     @product.user = current_user
-
-    respond_to do |format|
-      if @product.save
-        format.html { redirect_to @product, notice: "Product was successfully created." }
-      else
-        format.html { render :new, status: :unprocessable_content }
-      end
+    if @product.save
+      flash[:notice] = "Product was created successfully."
+      redirect_to @product
+    else
+      render :new
     end
   end
-
-  # PATCH/PUT /products/1 or /products/1.json
   def update
-    respond_to do |format|
-      if @product.update(product_params)
-        format.html { redirect_to @product, notice: "Product was successfully updated." }
-      else
-        format.html { render :edit, status: :unprocessable_content }
-      end
+    if @product.update(product_params)
+      flash[:notice] = "Product was updated successfully."
+      redirect_to @product
+    else
+      render :edit
     end
   end
-
-  # DELETE /products/1 or /products/1.json
   def destroy
     @product.destroy!
-
-    respond_to do |format|
-      format.html { redirect_to products_path, status: :see_other, notice: "Product was successfully destroyed." }
-    end
+    flash[:notice] = "Product was successfully destroyed."
+    redirect_to products_path
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_product
       @product = Product.find(params[:id])
     end
-
-    # Only allow a list of trusted parameters through.
     def product_params
       params.require(:product).permit(:name, :description, :price)
     end
-
     def require_same_user
       if current_user != @product.user && !current_user.admin?
         flash[:alert] = "You can only edit or delete your own products"
         redirect_to @product
       end
     end
-
-
 end
