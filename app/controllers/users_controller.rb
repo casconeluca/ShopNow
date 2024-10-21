@@ -20,7 +20,7 @@ class UsersController < ApplicationController
       flash[:notice] = "Welcome to the Product Beta #{@user.username}, you have successfully signed up"
       redirect_to products_path
     else
-      render :new
+      render :new, status: :unprocessable_content
     end
   end
   def update
@@ -28,7 +28,7 @@ class UsersController < ApplicationController
         flash[:notice] = "Your account information was successfully updated"
         redirect_to @user
       else
-        render :edit
+        render :edit, status: :unprocessable_content
       end
   end
   def destroy

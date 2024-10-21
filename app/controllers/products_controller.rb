@@ -19,7 +19,7 @@ class ProductsController < ApplicationController
       flash[:notice] = "Product was created successfully."
       redirect_to @product
     else
-      render :new
+      render :new, status: :unprocessable_content
     end
   end
   def update
@@ -27,7 +27,7 @@ class ProductsController < ApplicationController
       flash[:notice] = "Product was updated successfully."
       redirect_to @product
     else
-      render :edit
+      render :edit, status: :unprocessable_content
     end
   end
   def destroy
