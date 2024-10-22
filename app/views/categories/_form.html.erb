@@ -1,0 +1,13 @@
+<%= form_with(model: @category) do |form| %>
+  <div class="form-group row">
+    <%= form.label :name, "Category name", class: "col-sm-2 col-form-label" %>
+    <div class="col-sm-10">
+      <%= form.text_field :name, class: "form-control shadow rounded", placeholder: "Enter a name"  %>
+    </div>
+  </div>
+  <div class="row justify-content-center">
+    <div class="col-auto">
+      <%= form.submit class: "btn btn-outline-light btn-lg" %>
+    </div>
+  </div>
+<% end %>
