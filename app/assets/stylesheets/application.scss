@@ -15,11 +15,11 @@
  */
 @import "bootstrap";
 
-html{
+html {
   height: 100%;
 }
 
-body{
+body {
   background-color: #999971;
   height: 100%;
   display: flex;
@@ -27,15 +27,15 @@ body{
   min-height: 100vh;
 }
 
-.navbar{
+.navbar {
   background-color: black !important;
 }
 
-.nav-link{
+.nav-link {
   color: white !important;
 }
 
-#logo{
+#logo {
   float: left;
   font-size: 1.7em;
   color: #fff;
@@ -44,21 +44,74 @@ body{
   font-weight: bold;
 }
 
-#home-container{
+#home-container {
   margin-top: 25px;
 }
 
-#jumbotron{
-  background-image: asset_url('immagine_home.jpg');
+#jumbotron {
+  position: relative;
+  background-image: url('immagine_home.jpg');
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
   height: 680px;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 10);
+  text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.8);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#jumbotron h1 {
+  position: relative;
+  z-index: 2;
+  font-size: 4rem;
+  font-weight: 700;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}
+
+#jumbotron::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+  z-index: 1;
+}
+
+#jumbotron p {
+  position: relative;
+  z-index: 2;
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+  line-height: 1.6;
+}
+
+#jumbotron .btn {
+  position: relative;
+  z-index: 2;
+  padding: 1rem 2rem;
+  font-size: 1.25rem;
+  border-radius: 8px;
+  background-color: #28a745;
+  color: white;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+}
+
+#jumbotron .btn:hover {
+  position: relative;
+  z-index: 2;
+  background-color: #218838;
+  box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.5);
 }
 
 .py-5 {
-  padding-top: 12rem !important;
+  padding-top: 8rem !important;
 }
 
 .footer {
@@ -76,7 +129,14 @@ body{
   text-decoration: underline;
 }
 
+.form-container {
+  max-width: 800px;
+  width: 100%;
+  margin: auto;
+}
+
 .form-group {
+  min-height: 50px;
   margin-bottom: 1rem;
 }
 
@@ -99,10 +159,12 @@ body{
   border: 1px solid #999971;
   text-align: center;
   padding: 1em;
-  cursor: default; }
+  cursor: default;
+}
 
 .apple_pagination a, .apple_pagination span {
-  padding: 0.2em 0.3em; }
+  padding: 0.2em 0.3em;
+}
 
 .apple_pagination .current {
   font-style: normal;
@@ -112,15 +174,35 @@ body{
   width: 1.4em;
   height: 1.4em;
   line-height: 1.5;
-  -moz-border-radius: 1em;
-  -webkit-border-radius: 1em;
   border-radius: 1em;
-  text-shadow: rgba(255, 255, 255, 0.8) 1px 1px 1px; }
+  text-shadow: rgba(255, 255, 255, 0.8) 1px 1px 1px;
+}
 
 .apple_pagination a {
   text-decoration: none;
-  color: black; }
+  color: black;
+}
 
 .apple_pagination a:hover, .apple_pagination a:focus {
-  text-decoration: underline; }
+  text-decoration: underline;
+}
 
+@media (max-width: 768px) {
+  #jumbotron {
+    height: auto;
+    padding: 2rem 1rem;
+  }
+
+  #jumbotron h1 {
+    font-size: 2.5rem;
+  }
+
+  #jumbotron p {
+    font-size: 1.2rem;
+  }
+
+  #jumbotron .btn {
+    font-size: 1rem;
+    padding: 0.75rem 1.5rem;
+  }
+}

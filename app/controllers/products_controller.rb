@@ -41,7 +41,7 @@ class ProductsController < ApplicationController
       @product = Product.find(params[:id])
     end
     def product_params
-      params.require(:product).permit(:name, :description, :price)
+      params.require(:product).permit(:name, :description, :price, category_ids: [])
     end
     def require_same_user
       if current_user != @product.user && !current_user.admin?
