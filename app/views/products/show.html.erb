@@ -6,6 +6,9 @@
           <div class="card-header fst-italic">
             by <%= @product.user.username if @product.user %>
             <%= link_to gravatar_for(@product.user), @product.user %>
+            <% if @product.categories.any? %>
+              <div class="mt-2"><%= render @product.categories %></div>
+            <% end %>
           </div>
           <div class="card-body">
             <div class="card-text text-start"><%= simple_format(@product.description) %></div>
