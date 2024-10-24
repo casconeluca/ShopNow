@@ -16,7 +16,7 @@ class ProductsController < ApplicationController
     @product = Product.new(product_params)
     @product.user = current_user
     if @product.save
-      flash[:notice] = "Product was created successfully."
+      flash[:notice] = "Prodotto creato con successo!"
       redirect_to @product
     else
       render :new, status: :unprocessable_content
@@ -24,7 +24,7 @@ class ProductsController < ApplicationController
   end
   def update
     if @product.update(product_params)
-      flash[:notice] = "Product was updated successfully."
+      flash[:notice] = "Prodotto aggiornato con successo!"
       redirect_to @product
     else
       render :edit, status: :unprocessable_content
@@ -32,7 +32,7 @@ class ProductsController < ApplicationController
   end
   def destroy
     @product.destroy!
-    flash[:notice] = "Product was successfully destroyed."
+    flash[:notice] = "Prodotto eliminato con successo!"
     redirect_to products_path
   end
 
@@ -45,7 +45,7 @@ class ProductsController < ApplicationController
     end
     def require_same_user
       if current_user != @product.user && !current_user.admin?
-        flash[:alert] = "You can only edit or delete your own products"
+        flash[:alert] = "Puoi modificare o eliminare solo i tuoi prodotti"
         redirect_to @product
       end
     end

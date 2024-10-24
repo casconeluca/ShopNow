@@ -1,8 +1,8 @@
-<h1 class="text-center mt-4">Listing all products</h1>
+<h1 class="text-center mt-4">Lista dei prodotti</h1>
 <div class="apple_pagination">
-  <%= will_paginate @products, :container => false %>
+  <%= will_paginate @products, previous_label: "<- Indietro", next_label: "Avanti ->", :container => false %>
 </div>
 <%= render "product" %>
 <div class="apple_pagination mb-4">
-  <%= will_paginate @products, :container => false %>
+  <%= will_paginate @products, previous_label: "<- Indietro", next_label: "Avanti ->", :container => false %>
 </div>

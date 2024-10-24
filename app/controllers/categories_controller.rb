@@ -1,5 +1,6 @@
 class CategoriesController < ApplicationController
   before_action :require_admin, except: %i[ index show ]
+  before_action :set_category, only: %i[ show edit update destroy ]
 
   def new
     @category = Category.new
@@ -8,7 +9,7 @@ class CategoriesController < ApplicationController
   def create
     @category = Category.new(category_params)
     if @category.save
-      flash[:notice] = "Category successfully added!"
+      flash[:notice] = "Categoria aggiunta con successo!"
       redirect_to @category
     else
       render :new, status: :unprocessable_content
@@ -16,13 +17,11 @@ class CategoriesController < ApplicationController
   end
 
   def edit
-    @category = Category.find(params[:id])
   end
 
   def update
-    @category = Category.find(params[:id])
     if @category.update(category_params)
-      flash[:notice] = "Category successfully updated!"
+      flash[:notice] = "Categoria aggiornata con successo!"
       redirect_to @category
     else
       render :edit, status: :unprocessable_content
@@ -34,11 +33,20 @@ class CategoriesController < ApplicationController
   end
 
   def show
-    @category = Category.find(params[:id])
     @products = @category.products.paginate(page: params[:page], per_page: 3)
   end
 
+  def destroy
+    @category.destroy
+    flash[:notice] = "Categoria distrutta con successo!"
+    redirect_to categories_path
+  end
+
   private
+
+  def set_category
+    @category = Category.find(params[:id])
+  end
 
   def category_params
     params.require(:category).permit(:name)
@@ -46,7 +54,7 @@ class CategoriesController < ApplicationController
 
   def require_admin
     if !(logged_in? && current_user.admin?)
-      flash[:alert] = "You are not allowed to do that."
+      flash[:alert] = "Non hai i permessi per farlo"
       redirect_to categories_path
     end
   end

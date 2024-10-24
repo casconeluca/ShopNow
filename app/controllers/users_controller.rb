@@ -17,7 +17,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       session[:user_id] = @user.id
-      flash[:notice] = "Welcome to the Product Beta #{@user.username}, you have successfully signed up"
+      flash[:notice] = "Benvenuto #{@user.username}, ti sei correttamente registrato"
       redirect_to products_path
     else
       render :new, status: :unprocessable_content
@@ -25,7 +25,7 @@ class UsersController < ApplicationController
   end
   def update
       if @user.update(user_params)
-        flash[:notice] = "Your account information was successfully updated"
+        flash[:notice] = "Le informazioni del tuo account sono state aggiornate con successo"
         redirect_to @user
       else
         render :edit, status: :unprocessable_content
@@ -34,7 +34,7 @@ class UsersController < ApplicationController
   def destroy
     @user.destroy
     session[:user_id] = nil if @user == current_user
-    flash[:notice] = "Account and all associated products successfully deleted."
+    flash[:notice] = "L'account e tutti i prodotti associati sono stati eliminati con successo"
     redirect_to products_path
   end
 
@@ -47,7 +47,7 @@ class UsersController < ApplicationController
   end
   def require_same_user
     if current_user != @user && !current_user.admin?
-      flash[:alert] = "You can only edit or delete your own account"
+      flash[:alert] = "Puoi modificare o eliminare solo il tuo account"
       redirect_to @user
     end
   end

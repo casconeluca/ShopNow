@@ -4,7 +4,7 @@
       <div class="col-12 col-md-8 mt-4 mb-3">
         <div class="card text-center shadow mb-5 bg-white rounded">
           <div class="card-header fst-italic">
-            by <%= @product.user.username if @product.user %>
+            creato da <%= @product.user.username if @product.user %>
             <%= link_to gravatar_for(@product.user), @product.user %>
             <% if @product.categories.any? %>
               <div class="mt-2"><%= render @product.categories %></div>
@@ -14,12 +14,9 @@
             <div class="card-text text-start"><%= simple_format(@product.description) %></div>
             <p class="card-text text-start"><%= "#{@product.price} €" %></p>
             <% if logged_in? && (@product.user == current_user || current_user.admin?) %>
-              <%= link_to "Edit", edit_product_path(@product), class: "btn btn-outline-info" %>
-              <%= link_to "Delete", @product, class: "btn btn-outline-danger", data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+              <%= link_to "Modifica", edit_product_path(@product), class: "btn btn-outline-info" %>
+              <%= link_to "Elimina", @product, class: "btn btn-outline-danger", data: {turbo_method: :delete, turbo_confirm: "Sei sicuro?"} %>
             <% end %>
-          </div>
-          <div class="card-footer text-body-secondar">
-            <small>Created <%= time_ago_in_words(@product.created_at) %> ago, Edited <%= time_ago_in_words(@product.updated_at) %> ago</small>
           </div>
         </div>
       </div>
