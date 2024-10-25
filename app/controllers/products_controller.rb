@@ -1,6 +1,6 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: %i[ show edit update destroy ]
-  before_action :require_user, except: %i[ show index ]
+  before_action :require_user, only: %i[ new create edit update destroy ]
   before_action :require_same_user, only: %i[ edit update destroy ]
   def show
   end
@@ -37,16 +37,16 @@ class ProductsController < ApplicationController
   end
 
   private
-    def set_product
-      @product = Product.find(params[:id])
+  def set_product
+    @product = Product.find(params[:id])
+  end
+  def product_params
+    params.require(:product).permit(:name, :description, :price, category_ids: [])
+  end
+  def require_same_user
+    if current_user != @product.user && !current_user.admin?
+      flash[:alert] = "Puoi modificare o eliminare solo i tuoi prodotti"
+      redirect_to @product
     end
-    def product_params
-      params.require(:product).permit(:name, :description, :price, category_ids: [])
-    end
-    def require_same_user
-      if current_user != @product.user && !current_user.admin?
-        flash[:alert] = "Puoi modificare o eliminare solo i tuoi prodotti"
-        redirect_to @product
-      end
-    end
+  end
 end

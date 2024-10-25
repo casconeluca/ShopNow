@@ -1,6 +1,14 @@
 <% if obj.errors.any? %>
   <div class="alert alert-danger alert-dismissible fade show" role="alert">
-    <h4 class="alert-heading"><%= obj.errors.count == 1 ? "#{obj.errors.count} errore" : "#{obj.errors.count} errori" %> impediscono <%= obj.class.name.downcase == "user" ? "questo utente dall'essere salvato" : obj.class.name.downcase == "product" ? "questo prodotto dall'essere salvato" : "questa categoria dall'essere salvata" %>:</h4>
+    <h4 class="alert-heading">
+      <%= obj.errors.count == 1 ? "#{obj.errors.count} errore" : "#{obj.errors.count} errori" %> impediscono
+      <%= if obj.class.name.downcase == "user"
+            "questo utente dall'essere salvato"
+          else
+            obj.class.name.downcase == "product" ? "questo prodotto dall'essere salvato" :
+              "questa categoria dall'essere salvata"
+          end %>:
+    </h4>
     <ul>
       <% obj.errors.each do |error| %>
         <li><%= error.full_message %></li>
@@ -9,5 +17,6 @@
     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
   </div>
 <% end %>
+
 
 
